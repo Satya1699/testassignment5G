@@ -1,0 +1,5 @@
+GOOG - 15, STG - 20, MS - 10
+AMZN - 30, GOOG - 25, STG - 10, MS - 5
+GOOG - 10, AMZN - 20, STG - 30
+AMZN - 25, MS - 20, GOOG - 35, STG - 15, TXN - 20
+GOOG - 5, STD - 10, AMZN - 30, MS - 5

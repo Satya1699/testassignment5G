@@ -7,7 +7,11 @@ public class Stock implements Comparable<Stock> {
 public String getStockLine() {
 	return stockLine;
 }
-
+public Stock() { }
+public Stock(String stockLine, double price) {
+	this.stockLine = stockLine;
+	this.rowPrice = price;
+}
 public void setStockLine(String stockLine) {
 	this.stockLine = stockLine;
 }
