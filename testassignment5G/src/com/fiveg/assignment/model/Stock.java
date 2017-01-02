@@ -8,6 +8,12 @@ public String getStockLine() {
 	return stockLine;
 }
 public Stock() { }
+public Stock(final String stockLine) {
+	this.stockLine = stockLine;
+}
+public Stock(double rowPrice) {
+	this.rowPrice = rowPrice;
+}
 public Stock(String stockLine, double price) {
 	this.stockLine = stockLine;
 	this.rowPrice = price;
