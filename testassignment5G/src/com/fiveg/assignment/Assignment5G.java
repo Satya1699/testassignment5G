@@ -14,7 +14,7 @@ import com.fiveg.assignment.service.StockOperations;
 import com.fiveg.assignment.service.StockOperationsImpl;
 import com.fiveg.assignment.utils.StockComparator;
 
-public class HelloWorld {
+public class Assignment5G {
 
 	public static void main(String... args) {
 		FileOperations fileOprs = new FileOperationsImpl();
