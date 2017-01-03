@@ -13,6 +13,10 @@ import com.fiveg.assignment.service.FileOperationsImpl;
 import com.fiveg.assignment.service.StockOperations;
 import com.fiveg.assignment.service.StockOperationsImpl;
 import com.fiveg.assignment.utils.StockComparator;
+/**
+ *  Class : Assignment5G is the main class which takes the stock file name as Command line argument and uses FileService class to process the file 
+ *  and then uses StockService class to process the stock by using NAVWebServie and Cache class.  
+ * */
 
 public class Assignment5G {
 
@@ -31,12 +35,12 @@ public class Assignment5G {
 						System.out.println("Processing File.......");
 						List<Stock> stockList = fileOprs.processFile(stockFile);
 						if(stockList != null && stockList.size() > 0 ) {
-							System.out.println("Stock List Before is : ");
+							System.out.println("Stock List Before Processing is : ");
 							stkOprs.printStock(stockList);
-
+										
 							stkOprs.processStockList(stockList);
 							
-							System.out.println("Stock List After is : ");
+							System.out.println("Stock List After Processing is : ");
 							Collections.sort(stockList, new StockComparator() );
 							stkOprs.printStock(stockList);
 						}else { throw new NullPointerException("Stock List is not initiated (null)....");}
@@ -48,26 +52,6 @@ public class Assignment5G {
 				}
 			}else{ throw new NullPointerException("File is null...."); }
 		}
-		System.out.println("Hello World.........");
+		System.out.println("Processing completed..................");
 	}
-}
-
-
-/*
-StockService service = new StockServiceImpln();
-if( args.length > 0 ) {
-	System.out.println("Args  :: "+ args[0]);
-	 String argFileName = service.checkCLArgument(args);
-	 File fileName =  service.checkFile(argFileName);
-	 if( fileName != null) {
-		 try{
-			 service.processFile(fileName);
-		 }catch(IOException ioexp) { ioexp.printStackTrace(); }
-		 System.out.println("Hello World...");
-	 }else{
-		 throw new NullPointerException("processFile() method should have a valid file as argument");
-	 }
-}else{
-	throw new InvalidCLArgumentException("Command line argument should be passed...");
-}
-*/
+} // end of Assignment5G class.

@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import com.fiveg.assignment.model.StockNavi;
 import com.google.gson.Gson;
@@ -35,23 +36,24 @@ public class NAVWebService {
 
 	public static StockNavi getStockNavi(String jsonResponse) {
 		//String urlStr = "http://finance.google.com/finance/info?client=ig&q=GOOG, YHOO";
-		StockNavi stkNav = null;
-		try{
-			String response = getJSONStringResponse(jsonResponse);
-		   	System.out.println("Response :"+ response);
-		   	//response = response.substring(2);
-		   	Gson gson = new Gson();
-		   
-		   	stkNav = gson.fromJson(response, new TypeToken<StockNavi>(){}.getType());
-		   
-/*		   	List<StockNavi> list = gson.fromJson(response.trim(), new TypeToken<List<StockNavi>>(){ }.getType());
-			System.out.println("List size : "+list.size() );
-			for(StockNavi stkNav : list){
-				System.out.println("Stock "+stkNav.getT()+"Navi :"+ stkNav.getL());
-			}	*/
-		   }catch(MalformedURLException malfUrlExp) {}
-		    catch(IOException ioexp) {}
+		//StockNavi stkNav;
 		
-		   return stkNav;
+		   try{
+			   String resp = getJSONStringResponse(jsonResponse);
+			   System.out.println("Response :"+ resp);
+			   resp = resp.substring(2);
+			   Gson gson = new Gson();
+			   List<StockNavi> list = gson.fromJson(resp.trim(), new TypeToken<List<StockNavi>>(){ }.getType());
+			   
+			   System.out.println("List size : "+list.size() );
+			   
+			   for(StockNavi stkNav : list){
+				   System.out.println("Stock  : "+stkNav.getT()+" &  NAV is  :"+ stkNav.getL());
+				   return stkNav;
+			   }
+		   }catch(MalformedURLException malfUrlExp) {}
+		   catch(IOException ioexp) {}
+
+		return null;
 	}
 } 

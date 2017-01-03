@@ -11,7 +11,8 @@ public class StockNavi {
   private String ltt;
   private String lt;
   private String lt_dt;
-public long getId() {
+
+  public long getId() {
 	return id;
 }
 public void setId(long id) {
@@ -72,5 +73,7 @@ public void setLt_dt(String lt_dt) {
 	this.lt_dt = lt_dt;
 }
 
-  
+  public void showData() {
+	  System.out.println(id + " : "+t +" : " + e+" : "+l+" :"+l_fix+" : "+l_cur+" : "+s+" : "+ltt+" : "+lt+" : "+lt_dt+" : ");
+  }
 }

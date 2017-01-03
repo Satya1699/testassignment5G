@@ -14,12 +14,15 @@ public class StockOperationsImpl implements StockOperations {
 	
 	@Override
 	public void processStockList(List<Stock> stockList) {
+		System.out.println("Processing.........");
 	   for( Stock stockRow : stockList) {
 		   double totalRowPrice = computeTotalPrice(stockRow);
+		   System.out.println("Total Row Price : "+ totalRowPrice);
 		   stockRow.setRowPrice(totalRowPrice);
 	   }
 	    for(Map.Entry<String, StockNavi> entries : stockMapper.entrySet()) {
-	    	System.out.println(entries.getKey() + " < - > " + entries.getValue().toString() );
+	    	System.out.print(entries.getKey() + "  :::>" );
+	    	entries.getValue().showData();
 	    }   
 	}
 
@@ -29,7 +32,7 @@ public class StockOperationsImpl implements StockOperations {
 		double totalPrice = 0.0;
 		double itemPrice = 0.0;
 			  
-		
+		System.out.println("Computing................"+stockRow);
 	    String[] stock = stockRow.getStockLine().split(",");
 	    for( int i=0; i< stock.length; i+=1 ) {        
 		    String items[] = stock[i].split("-");
@@ -37,13 +40,16 @@ public class StockOperationsImpl implements StockOperations {
 			    String symbol = items[0].trim();
 			    int quantity = Integer.valueOf(items[1].trim() );
 			    if( stockMapper.containsKey(symbol) ) {
+			    	System.out.println("Getting NAV From Mapper Class................");
 			    	itemPrice = ((StockNavi)stockMapper.get(symbol)).getL();
 			    	totalPrice += (itemPrice * quantity);
 			    }else{
+			    	System.out.println("Getting NAV from net Service..................");
 			    	StockNavi stkNavi = NAVWebService.getStockNavi("http://finance.google.com/finance/info?client=ig&q="+symbol);
 			    	stockMapper.put(symbol, stkNavi );
 			    	itemPrice = stkNavi.getL();
 			    	totalPrice += (itemPrice * quantity);
+			    	System.out.println("Total Row Price..........."+totalPrice);
 			    }
 		    }
 	    } 		// for end.
